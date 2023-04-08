@@ -244,6 +244,44 @@ def alterarContato(dic):
                             nome = nom
                     print(f"{nome} - {tel}")
                     print()
+                    print("""QUAL TIPO DE ALTERAÇÃO DESEJA REALIZAR?
+
+                1 - ALTERAR NOME/TELEFONE
+                2 - APAGAR CONTATO
+                3 - VOLTAR
+                """)
+                    op2 = int(input("OPÇÃO: "))
+                    if op2 < 1 and op > 3:
+                        raise ValueError("OPÇÃO INVÁLIDA.")
+                    elif op2 == 3:
+                        break
+                    elif op2 == 1:
+                        novo_nome = input("NOVO NOME: ").strip().upper()
+                        if novo_nome == "":
+                            raise ValueError("ENTRE UM NOME NÃO NULO.")
+                        novo_tel = input("NOVO TELEFONE: ").strip()
+                        if novo_tel == "":
+                            raise ValueError("ENTRE UM NÚMERO NÃO NULO.")
+                        dic.pop(nome)
+                        dic[novo_nome] = novo_tel
+                        with open("contatos.csv", "w") as agenda:
+                            lista = list(dic.keys())
+                            agenda.write("NOME,TELEFONE\n")
+                            agenda.write("EMPTY,0\n")
+                            for n in lista:
+                                if n != "VAZIO":
+                                    agenda.write(f"{n},{dic[n]}\n")
+                        break
+                    elif op2 == 2:
+                        dic.pop(nome)
+                        with open("contatos.csv", "w") as agenda:
+                            lista = list(dic.keys())
+                            agenda.write("NOME,TELEFONE\n")
+                            agenda.write("EMPTY,0\n")
+                            for n in lista:
+                                if n != "VAZIO":
+                                    agenda.write(f"{n},{dic[n]}\n")
+                        break
             else:
                 print("\nNENHUM CONTATO ENCONTRADO.")
 
