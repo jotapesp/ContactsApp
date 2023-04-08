@@ -1,8 +1,6 @@
 import os
 import csv
 
-## essa linha não deve existir
-
 def agendaexiste():
     caminho_agenda = os.path.abspath("contatos.csv")
     return os.path.exists(caminho_agenda)
