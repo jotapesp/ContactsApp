@@ -1,6 +1,8 @@
 import os
 import csv
 
+# me parece que esse editor é melhor
+
 def agendaexiste():
     caminho_agenda = os.path.abspath("contatos.csv")
     return os.path.exists(caminho_agenda)
